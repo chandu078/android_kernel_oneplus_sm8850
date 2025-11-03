@@ -312,7 +312,7 @@ static void freq_mon_prefer_cpu_gov(struct cache_allocation *pdev)
 		pdev->client_input[GPU] = GEAR_LVL_6;
 		ret = cache_allocation_configure(pdev);
 		if (ret < 0) {
-			BUG_ON(1);
+			WARN_ON(1);
 			return;
 		}
 	} else if (pdev->freq_mon_status != 3 &&
@@ -325,7 +325,7 @@ static void freq_mon_prefer_cpu_gov(struct cache_allocation *pdev)
 		pdev->client_input[GPU] = GEAR_LVL_11;
 		ret = cache_allocation_configure(pdev);
 		if (ret < 0) {
-			BUG_ON(1);
+			WARN_ON(1);
 			return;
 		}
 	} else if (pdev->freq_mon_status != 4 &&
@@ -371,7 +371,7 @@ static void freq_mon_prefer_gpu_gov(struct cache_allocation *pdev)
 	}
 
 	if (ret < 0) {
-		BUG_ON(1);
+		WARN_ON(1);
 		return;
 	}
 }
@@ -429,7 +429,7 @@ static void bw_mon_ratio_gov(struct cache_allocation *pdev)
 	}
 
 	if (ret < 0) {
-		BUG_ON(1);
+		WARN_ON(1);
 		return;
 	}
 }
@@ -631,6 +631,9 @@ static ssize_t enable_monitor_store(struct device *dev,
 	if (kstrtobool(buf, &val))
 		return -EINVAL;
 
+	if (pd->enable_monitor == val)
+		return count;
+
 	mutex_lock(&pd->lock);
 	pd->enable_monitor = val;
 	pd->running_flag = val;
@@ -647,10 +650,8 @@ static ssize_t enable_monitor_store(struct device *dev,
 		pd->client_input[GPU] = pd->client_input_ext[GPU];
 		ret = cache_allocation_configure(pd);
 		mutex_unlock(&pd->lock);
-		if (ret < 0) {
-			BUG_ON(1);
-			return count;
-		}
+		if (ret < 0)
+			WARN_ON(1);
 
 		cancel_delayed_work_sync(&pd->work);
 	}
