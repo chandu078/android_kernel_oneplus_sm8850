@@ -80,6 +80,7 @@
 #define SUBTYPE_NUKU 0x5D    /* pmh0101 */
 #ifdef OPLUS_FEATURE_CHG_BASIC
 #define SUBTYPE_PMIH 0x56    /* pmih010x */
+#define SUBTYPE_PM8550 0x49    /* pm8550 */
 #endif
 
 #define BCL_IBAT_CCM_OFFSET   800
@@ -140,6 +141,7 @@ enum {
 enum {
 	PMIC_SUBTYPE_PMH0101,
 	PMIC_SUBTYPE_PMIH010X,
+	PMIC_SUBTYPE_PM8550,
 	PMIC_SUBTYPE_MAX,
 };
 #endif
@@ -260,6 +262,8 @@ static int get_pmic_subtype(struct bcl_device *bcl_perph)
 		return PMIC_SUBTYPE_PMH0101;
 	} else if (data == SUBTYPE_PMIH ) { /* pmih010x */
 		return PMIC_SUBTYPE_PMIH010X;
+	} else if (data == SUBTYPE_PM8550 ) { /* pm8550 */
+		return PMIC_SUBTYPE_PM8550;
 	} else {
 		pr_debug("invalid subtype = 0x%x\n", data);
 		return PMIC_SUBTYPE_MAX;
@@ -1611,7 +1615,7 @@ static int bcl_probe(struct platform_device *pdev)
 		dev_err(&pdev->dev, "Couldn't creat oplus bcl_stat\n");
 
 	if (bcl_perph->support_dynamic_vbat) {
-		if (bcl_perph->pmic_type == PMIC_SUBTYPE_PMH0101) {
+		if (bcl_perph->pmic_type == PMIC_SUBTYPE_PMH0101 || bcl_perph->pmic_type == PMIC_SUBTYPE_PM8550) {
 			dev_err(&pdev->dev, "bcl_probe bcl_perph->pmic_type %d init work !\n", bcl_perph->pmic_type);
 			INIT_WORK(&bcl_perph->vbat_check_work, pmh0101_bcl_vbat_check);
 		} else { /* qcom default support pmih010x, so judge not pmh0101, default init work bac_vbat_check */
@@ -1648,7 +1652,11 @@ static const struct bcl_desc pm8550_data = {
 		[BCLBIG_COMP_VCMP_L1_THR]		= 0x49,
 		[BCLBIG_COMP_VCMP_L2_THR]		= 0x4A,
 	},
-	.vbat_zone_enabled = false,
+#ifdef OPLUS_FEATURE_CHG_BASIC
+		.vbat_zone_enabled = true,
+#else
+		.vbat_zone_enabled = false,
+#endif
 	.vcmp_thresh_base = 2250,
 	.vcmp_thresh_max = 3600,
 };
@@ -1672,6 +1680,9 @@ static const struct bcl_desc pmh0101_data = {
 static const struct of_device_id bcl_match[] = {
 	{ .compatible = "qcom,bcl-v5", .data = &pmih010x_data},
 	{ .compatible = "qcom,pmh0101-bcl-v5", .data = &pmh0101_data},
+#ifdef OPLUS_FEATURE_CHG_BASIC
+	{ .compatible = "qcom,pm8550-bcl-v5", .data = &pm8550_data},
+#endif
 	{ }
 };
 MODULE_DEVICE_TABLE(of, bcl_match);

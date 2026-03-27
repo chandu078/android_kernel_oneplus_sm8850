@@ -1381,6 +1381,7 @@ static void walt_find_new_ilb(void *unused, struct cpumask *nohz_idle_cpus_mask,
 	}
 }
 
+
 void walt_lb_init(void)
 {
 	int cpu;

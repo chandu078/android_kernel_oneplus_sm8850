@@ -368,6 +368,7 @@ def register_modules(registry):
         deps = [
             # do not sort
             "drivers/firmware/qcom/qcom-scm",
+            "drivers/soc/qcom/cpu_phys_log_map",
         ],
     )
 
@@ -833,7 +834,9 @@ def register_modules(registry):
         deps = [
             # do not sort
             "drivers/soc/qcom/qcom_cpucp.c",
+            "drivers/soc/qcom/dcvs/qcom_scmi_client",
             "kernel/sched/walt/sched-walt",
+	    "drivers/soc/qcom/cpu_phys_log_map",
         ],
     )
 
@@ -1437,6 +1440,7 @@ def register_modules(registry):
             "drivers/soc/qcom/wcd-usbss-tables.c",
             "drivers/soc/qcom/wcd-usbss-utils.c",
             "drivers/soc/qcom/wcd939x-i2c.c",
+            "drivers/soc/qcom/oplus_audio_switch.h",
         ],
         deps = [
             # do not sort
@@ -1462,6 +1466,9 @@ def register_modules(registry):
             "drivers/virt/gunyah/gh_msgq",
             "drivers/virt/gunyah/gh_dbl",
             "arch/arm64/gunyah/gh_arm_drv",
+            #OPLUS_FEATURE_CHG_BASIC
+            "//vendor/oplus/kernel/charger/bazel:{target_variant}_oplus_chg_v2",
+            #OPLUS_FEATURE_CHG_BASIC end
             # Add for oplus mm feedback, CONFIG_OPLUS_FEATURE_MM_FEEDBACK
             "//vendor/oplus/kernel/multimedia/feedback/bazel:oplus_mm_kevent_fb",
         ],
