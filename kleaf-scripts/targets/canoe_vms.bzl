@@ -13,7 +13,7 @@ def define_canoe_vms(vm_image_opts = vm_image_opts()):
         base_tv = "{}_{}".format(base_target, variant)
 
         dtb_list = get_dtb_list(base_target)
-        compiled_dtbs = ["//soc-repo:canoe-{}_{}_dtb_build/{}".format(vt, variant, t) for vt in vm_types for t in dtb_list]
+        compiled_dtbs = ["//vendor/qcom/kernel:canoe-{}_{}_dtb_build/{}".format(vt, variant, t) for vt in vm_types for t in dtb_list]
 
         if variant == "debug-defconfig":
             base_kernel = "kernel_aarch64_qtvm_debug"
