@@ -28,7 +28,7 @@ def define_common_android_rules():
         out = "la.image.config",
         content = [
             "KERNEL_DIR=common",
-            "SOC_DIR=soc-repo",
+            "SOC_DIR=vendor/qcom/kernel",
             "KERNEL_BINARY=Image",
             "DO_NOT_STRIP_MODULES=0",
             "",
@@ -369,7 +369,7 @@ def define_typical_android_build(
             } | perf_kwargs,
             "consolidate": {
                 "config_fragment": consolidate_config,
-                "base_kernel": "//soc-repo:kernel_aarch64_consolidate",
+                "base_kernel": "//vendor/qcom/kernel:kernel_aarch64_consolidate",
                 "build_img_opts": consolidate_build_img_opts,
                 "ddk_config_deps": [common_info],
                 "implicit_config_fragment": perf_config,

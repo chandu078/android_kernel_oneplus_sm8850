@@ -1,1 +1,1 @@
-../../../../vendor/oplus/kernel/cpu/sched/sched_info/osi_healthinfo.h
+../../../sm8850-modules/oplus/kernel/cpu/sched/sched_info/osi_healthinfo.h

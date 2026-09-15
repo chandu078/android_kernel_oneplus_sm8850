@@ -97,7 +97,7 @@ def register_modules(registry):
             "drivers/virt/gunyah/gh_dbl",
             "arch/arm64/gunyah/gh_arm_drv",
             "drivers/dma-buf/heaps/deferred-free-helper",
-            "//vendor/oplus/kernel/mm:oplus_bsp_mm_osvelte",
+            "//vendor/qcom/sm8850-modules/oplus/kernel/mm:oplus_bsp_mm_osvelte",
             "drivers/dma-buf/heaps/aizerofs",
         ],
     )

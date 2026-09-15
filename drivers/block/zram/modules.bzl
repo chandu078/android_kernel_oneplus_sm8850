@@ -24,9 +24,9 @@ def register_modules(registry):
             "drivers/soc/qcom/qpace/qpace_drv",
             "mm/zsmalloc",
             "drivers/soc/qcom/panel_event_notifier",
-            "//vendor/oplus/kernel/mm:oplus_bsp_mm_osvelte",
+            "//vendor/qcom/sm8850-modules/oplus/kernel/mm:oplus_bsp_mm_osvelte",
             "drivers/dma-buf/heaps/qcom_dma_heaps",
-            "//vendor/oplus/kernel/cpu:oplus_bsp_sched_assist",
+            "//vendor/qcom/sm8850-modules/oplus/kernel/cpu:oplus_bsp_sched_assist",
         ],
         local_defines = [
             "CONFIG_HYBRIDSWAP",

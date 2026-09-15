@@ -1,1 +1,1 @@
-../../../../vendor/oplus/kernel/cpu/geas/system/bwmon_geas.h
+../../../sm8850-modules/oplus/kernel/cpu/geas/system/bwmon_geas.h

@@ -152,7 +152,7 @@ def register_modules(registry):
             "drivers/virt/gunyah/gh_msgq",
             "drivers/virt/gunyah/gh_dbl",
             "arch/arm64/gunyah/gh_arm_drv",
-            "//vendor/oplus/kernel/boot:oplus_bsp_bootmode",
+            "//vendor/qcom/sm8850-modules/oplus/kernel/boot:oplus_bsp_bootmode",
         ],
         local_defines = ["OPLUS_FEATURE_CHG_BASIC"],
     )
@@ -1136,7 +1136,7 @@ def register_modules(registry):
 	local_defines = ["CONFIG_OPLUS_FEATURE_QCOM_WATCHDOG_MODULE"],
         deps = [
             # do not sort
-	    "//vendor/oplus/kernel/boot:oplus_bsp_dfr_qcom_enhance_watchdog",
+	    "//vendor/qcom/sm8850-modules/oplus/kernel/boot:oplus_bsp_dfr_qcom_enhance_watchdog",
             "drivers/soc/qcom/minidump",
             "drivers/soc/qcom/smem",
             "drivers/soc/qcom/debug_symbol",
@@ -1463,7 +1463,7 @@ def register_modules(registry):
             "drivers/virt/gunyah/gh_dbl",
             "arch/arm64/gunyah/gh_arm_drv",
             # Add for oplus mm feedback, CONFIG_OPLUS_FEATURE_MM_FEEDBACK
-            "//vendor/oplus/kernel/multimedia/feedback/bazel:oplus_mm_kevent_fb",
+            "//vendor/qcom/sm8850-modules/oplus/kernel/multimedia/feedback/bazel:oplus_mm_kevent_fb",
         ],
         # Add for oplus config
         copts = ["-DCONFIG_OPLUS_FEATURE_MM_FEEDBACK"],

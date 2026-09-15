@@ -1,1 +1,1 @@
-../../../../vendor/oplus/kernel/cpu/sched/sched_assist/sched_assist.h
+../../../sm8850-modules/oplus/kernel/cpu/sched/sched_assist/sched_assist.h

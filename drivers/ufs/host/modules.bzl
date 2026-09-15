@@ -54,6 +54,6 @@ def register_modules(registry):
             "drivers/virt/gunyah/gh_msgq",
             "drivers/virt/gunyah/gh_dbl",
             "arch/arm64/gunyah/gh_arm_drv",
-            "//vendor/oplus/kernel/storage:ufs-oplus-dbg"
+            "//vendor/qcom/sm8850-modules/oplus/kernel/storage:ufs-oplus-dbg"
         ],
     )

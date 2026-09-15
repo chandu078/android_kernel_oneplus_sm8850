@@ -20,7 +20,7 @@ def register_modules(registry):
         ],
         deps = [
             # do not sort
-            "//vendor/oplus/kernel/charger/bazel:{target_variant}_oplus_chg_v2",
+            "//vendor/qcom/sm8850-modules/oplus/kernel/charger/bazel:{target_variant}_oplus_chg_v2",
             "drivers/soc/qcom/panel_event_notifier",
             "drivers/soc/qcom/qti_pmic_glink",
             "drivers/soc/qcom/pdr_interface",
