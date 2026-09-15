@@ -112,7 +112,7 @@ def _generate_ddk_target(
 
         # add oplus module deps
         for dep in module.deps:
-            if dep.startswith("//vendor/oplus"):
+            if dep.startswith("//vendor/qcom/sm8850-modules/oplus/"):
                 deps.append(dep.replace("{target_variant}", "{}".format(target_variant)))
 
         src_hdrs = [src for src in module.srcs if src.endswith(".h")]

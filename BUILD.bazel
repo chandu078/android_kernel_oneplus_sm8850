@@ -317,3 +317,11 @@ define_vienna()
 define_lahaina()
 
 define_x1p42100()
+
+# Private pinctrl header consumed by the Oplus charger test-kit.
+ddk_headers(
+    name = "oplus_charger_pinctrl_headers",
+    hdrs = ["drivers/pinctrl/qcom/pinctrl-msm.h"],
+    includes = ["drivers/pinctrl/qcom"],
+    visibility = ["//visibility:public"],
+)

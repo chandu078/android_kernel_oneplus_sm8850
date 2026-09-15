@@ -20,7 +20,7 @@ load(":kleaf-scripts/modules_unprotected.bzl", "get_unprotected_vendor_modules_l
 load(":kleaf-scripts/msm_dtc.bzl", "define_dtc_dist")
 load(":kleaf-scripts/techpack_modules.bzl", "define_techpack_modules")
 load(":qcom_modules.bzl", "registry")
-load("//build/kernel/oplus:oplus_modules.bzl", "define_oplus_ddk_modules")
+load("//vendor/qcom/sm8850-modules/oplus/bazel:oplus_modules.bzl", "define_oplus_ddk_modules")
 
 def define_common_android_rules():
     write_file(
@@ -304,6 +304,9 @@ def define_single_android_build(
         if board_bc_extras:
             dist_data.append("{}_extra_bootconfig".format(stem))
 
+    dist_data.extend(define_techpack_modules(stem, name, variant))
+    dist_data.extend(define_oplus_ddk_modules(stem, name, variant))
+
     copy_to_dist_dir(
         name = "{}_dist".format(stem),
         data = dist_data,
@@ -326,8 +329,6 @@ def define_single_android_build(
 
     define_dtc_dist(stem, name, variant)
 
-    define_techpack_modules(stem, name, variant)
-    define_oplus_ddk_modules(stem, name, variant)
 
     define_extras(stem, kbuild_config = base_kernel)
 
