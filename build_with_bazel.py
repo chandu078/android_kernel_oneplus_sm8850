@@ -278,16 +278,12 @@ class BazelBuilder:
             else:
                 out_dir = target.get_out_dir("dist")
 
-            if "_all_oplus_ddk_modules_dist" not in target.bazel_label:
-                opts = ["--dist_dir", out_dir]
-            else:
-                opts = None
 
             self.bazel(
                 "run",
                 [target],
                 extra_options=self.user_opts,
-                bazel_target_opts=opts
+                bazel_target_opts=["--dist_dir", out_dir]
             )
             self.write_opts(out_dir)
 
