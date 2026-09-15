@@ -25,7 +25,7 @@ def define_techpack_uapi_headers(stem, kernel_build):
         target = "{}_{}_uapi_headers".format(stem, name)
         ddk_uapi_headers(
             name = target,
-            srcs = ["//{}/qcom/opensource/{}".format(vendor/qcom/sm8850-modules, src)],
+            srcs = ["//vendor/qcom/sm8850-modules/qcom/opensource/{}".format(src)],
             out = "{}-uapi-headers.tar.gz".format(name),
             kernel_build = kernel_build,
             strip_prefix = strip_prefix,
